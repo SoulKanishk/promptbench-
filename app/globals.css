@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  --ink: #0d1512;
+  --ink-raised: #121b17;
+  --ink-line: #223029;
+  --paper: #eae6db;
+  --paper-dim: #9aa69e;
+  --amber: #e8a33d;
+  --amber-dim: #7a5b2a;
+  --add: #6fcf97;
+  --add-dim: #1e2f24;
+  --del: #e8737a;
+  --del-dim: #341f20;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-line: var(--ink-line);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-amber: var(--amber);
+  --color-amber-dim: var(--amber-dim);
+  --color-add: var(--add);
+  --color-add-dim: var(--add-dim);
+  --color-del: var(--del);
+  --color-del-dim: var(--del-dim);
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: 'Inter', ui-sans-serif, system-ui;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-line) transparent;
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--amber-dim);
+  color: var(--paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
