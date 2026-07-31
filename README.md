@@ -1,45 +1,52 @@
-# Promptbench — a prompt IDE
+# Promptbench
 
-Write, run, and compare prompts side by side. Zero-shot, few-shot, and
-chain-of-thought variants go head-to-head on the same model, live — scored
-on latency and token usage — powered by the free Groq API.
+**A prompt engineering IDE — write, run, and compare AI prompts side by side, with real usage data to back every decision.**
 
-## Stack
-- **Next.js 15 (App Router)** — Server Components by default; the workspace
-  is a Client Component only where it needs interactivity (editing, running).
-- **Tailwind CSS v4** — design tokens in `app/globals.css`.
-- **Supabase** — optional. The app runs fully on `localStorage` out of the
-  box (zero-friction demo, no login wall). If you set the two env vars in
-  `.env.example` and run `supabase/schema.sql`, prompts/runs can sync to
-  Supabase instead.
-- **Groq API** — the user pastes their own free key (from
-  console.groq.com/keys) in the top bar. It's sent directly from the
-  browser to Groq and never touches our server or gets stored remotely.
-- **Vercel** — zero-config deploy target.
+🔗 **Live demo:** https://promptbench-dun.vercel.app
+🔗 **Repo:** https://github.com/SoulKanishk/promptbench-
 
-## Run locally
-```bash
-npm install
-npm run dev
-```
-Open http://localhost:3000, paste a free Groq key in the top bar, and run
-one of the three sample prompts (sentiment classifier, summarizer, prompt
-rewriter) in Run mode or Compare mode.
+No login required — open the link and start using it immediately.
 
-## Deploy to Vercel
-```bash
-npx vercel
-```
-No environment variables are required for the demo to work. If you want
-optional Supabase persistence, add `NEXT_PUBLIC_SUPABASE_URL` and
-`NEXT_PUBLIC_SUPABASE_ANON_KEY` in the Vercel project settings and run
-`supabase/schema.sql` in your Supabase SQL editor first.
+---
 
-## Routes
-- `/` — the IDE workspace (sidebar file-tree, editor, run/compare panel)
-- `/health` — server-rendered health check; reports app status and, if
-  configured, live Supabase connectivity
+## The problem
 
-## Notes for reviewers
-- `PROMPTS_USED.md` logs the prompts used to build this with AI assistance,
-  plus what was manually corrected afterward, per the assignment brief.
+Most people write prompts by trial and error in a chat window, with no
+record of what worked, no way to compare approaches objectively, and no
+visibility into cost or latency trade-offs. Prompt engineering is treated
+like a scratchpad, not a discipline.
+
+## The solution
+
+Promptbench brings a software-engineering workflow to prompt writing:
+version your prompts like files, test variants against each other with
+real metrics, and see the data — not just a gut feeling — behind which
+approach wins.
+
+## What it does
+
+| Feature | Why it matters |
+|---|---|
+| **Compare mode** | Run zero-shot, few-shot, and chain-of-thought variants of the same prompt against the same input, side by side — with latency and token cost for each |
+| **IDE-style workspace** | File-tree of saved prompts, tabs, a command palette (⌘K), keyboard shortcuts — the same muscle memory as VS Code, applied to prompt writing |
+| **Live metrics** | Every run reports latency and token usage, so "which prompt is better" becomes a measurable answer, not an opinion |
+| **Cloud sync (optional)** | Sign in and your prompt library follows you across devices; work locally with zero setup otherwise |
+| **Zero-friction demo** | No account needed to try it — three real sample prompts are pre-loaded |
+
+## Who this is for
+
+Anyone iterating on prompts at any scale — from someone tuning a chatbot's
+system prompt to a team standardizing how their product uses LLMs and
+needing to justify prompt choices with data.
+
+## Built with
+
+Next.js · TypeScript · Tailwind CSS · Supabase (auth + database) · Groq
+API (fast, free LLM inference) · deployed on Vercel
+
+## How this was built
+
+This project was built with Claude as a hands-on development partner —
+from initial architecture decisions through debugging and deployment. The
+full process, including the prompts used and what was manually corrected
+along the way, is documented in `PROMPTS_USED.md`.
